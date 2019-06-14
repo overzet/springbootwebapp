@@ -1,6 +1,6 @@
 package com.overzet.springbootwebapp.controllers;
 
-import com.overzet.springbootwebapp.model.Author;
+import com.overzet.springbootwebapp.domainmodel.Author;
 import com.overzet.springbootwebapp.service.AuthorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,27 +10,41 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("authors")
 public class AuthorController {
 
     @Autowired
     private AuthorServiceImpl authorServiceImpls;
 
-    @GetMapping(value = "authors")
+    @GetMapping()
     public List<Author> authorList() {
         return authorServiceImpls.authorList();
     }
 
-    @PostMapping(value = "authors/add")
+    @PostMapping()
     public void addAuthor(@RequestBody Author author) {
         authorServiceImpls.addAuthor(author);
     }
 
-    @PutMapping(value = "authors/{id}")
+    @GetMapping("{id}")
+    public Author findById(@PathVariable Long id) {
+        return authorServiceImpls.findById(id);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteById(@PathVariable Long id) {
+        authorServiceImpls.deleteAuthor(id);
+    }
+
+
+    @PutMapping("{id}")
     public ResponseEntity<Author> updateAuthor(@PathVariable Long id, @RequestBody Author author) {
+
         authorServiceImpls.updateAuthor(id, author);
 
-        return new ResponseEntity<Author>(author, HttpStatus.OK);
+        return new ResponseEntity<>(author, HttpStatus.OK);
 
     }
+
 
 }

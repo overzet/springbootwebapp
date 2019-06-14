@@ -1,14 +1,9 @@
-package com.overzet.springbootwebapp.model;
+package com.overzet.springbootwebapp.viewmodel;
 
-import lombok.Data;
-
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Data
-@Entity
 public class Author {
 
     @Id
@@ -16,5 +11,4 @@ public class Author {
     private Long id;
     private String firstName;
     private String lastName;
-
 }
