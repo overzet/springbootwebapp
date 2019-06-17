@@ -1,4 +1,4 @@
-package com.overzet.springbootwebapp.domainmodel;
+package com.overzet.springbootwebapp.authorEntity;
 
 import lombok.Data;
 
@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class Author {
+public class AuthorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
