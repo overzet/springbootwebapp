@@ -46,21 +46,25 @@ public class AuthorServiceImpl implements AuthorService {
 
         Optional<Author> optionalAuthor = authorRepository.findById(id);// Getting an optional from the DB with the help of JPA
 
+        Author authorFromDb = null;
+
         if (optionalAuthor.isPresent()) {// If there is something in the optional then do something
 
-            Author authorFromDb = optionalAuthor.get();// Create a temporary 'AuthorFromDb' and fill it with what came out of the DB
+            authorFromDb = optionalAuthor.get();// Create a temporary 'authorFromDb' and fill it with what came out of the DB
 
             System.out.println("Author coming from database before update : " + authorFromDb);// This shows the old content from the DB
 
-            author.setId(authorFromDb.getId());// Copy the old .getId and copy it to the new author.setId, because they should be the same
-            author = authorRepository.save(author);// Save the new data to author in the DB
+            // Set the new values of firstName and lastName
+            authorFromDb.setFirstName(author.getFirstName());
+            authorFromDb.setLastName(author.getLastName());
+            authorFromDb = authorRepository.save(authorFromDb);// Save the new data to author in the DB
 
             System.out.println("Author coming from database after update : " + author);// This shows the new content from the DB
 
         } else {
             throw new RuntimeException("Did not find employee id: " + id);
         }
-        return author;// Returns the new content from the DB
+        return authorFromDb;// Returns the new content from the DB
 
         //TODO remove all comments
     }

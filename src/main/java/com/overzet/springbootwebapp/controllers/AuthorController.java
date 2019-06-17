@@ -36,13 +36,10 @@ public class AuthorController {
         authorServiceImpls.deleteAuthor(id);
     }
 
-
     @PutMapping("{id}")
     public ResponseEntity<Author> updateAuthor(@PathVariable Long id, @RequestBody Author author) {
 
-        authorServiceImpls.updateAuthor(id, author);
-
-        return new ResponseEntity<>(author, HttpStatus.OK);
+        return new ResponseEntity<>(authorServiceImpls.updateAuthor(id, author), HttpStatus.OK);
 
     }
 
