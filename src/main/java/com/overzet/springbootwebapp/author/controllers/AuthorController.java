@@ -1,47 +1,22 @@
 package com.overzet.springbootwebapp.author.controllers;
 
-import com.overzet.springbootwebapp.author.entity.Entity;
-import com.overzet.springbootwebapp.author.service.ServiceImpl;
+import com.overzet.springbootwebapp.author.model.Author;
+import com.overzet.springbootwebapp.author.service.AuthorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Collection;
 
 @RestController
-@RequestMapping("authors")
-public class Controller {
+public class AuthorController {
 
     @Autowired
-    private ServiceImpl authorServiceImpl;
+    private AuthorServiceImpl authorServiceImpl;
 
-    @GetMapping()
-    public List<Entity> authorList() {
-        return authorServiceImpl.authorList();
+    @GetMapping("/authors")
+    public Collection<Author> getAllAuthors() {
+        return authorServiceImpl.findAll();
     }
-
-    @PostMapping()
-    public void addAuthor(@RequestBody Entity entity) {
-        authorServiceImpl.addAuthor(entity);
-    }
-
-    @GetMapping("{id}")
-    public Entity findById(@PathVariable Long id) {
-        return authorServiceImpl.findById(id);
-    }
-
-    @DeleteMapping("{id}")
-    public void deleteById(@PathVariable Long id) {
-        authorServiceImpl.deleteAuthor(id);
-    }
-
-    @PutMapping("{id}")
-    public ResponseEntity<Entity> updateAuthor(@PathVariable Long id, @RequestBody Entity entity) {
-
-        return new ResponseEntity<>(authorServiceImpl.updateAuthor(id, entity), HttpStatus.OK);
-
-    }
-
 
 }

@@ -1,15 +1,9 @@
 package com.overzet.springbootwebapp.author.repository;
 
-import com.overzet.springbootwebapp.author.entity.Entity;
+import com.overzet.springbootwebapp.author.model.Author;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 @Repository
-public interface Repository extends JpaRepository<Entity, Long> {
+public interface AuthorRepository extends JpaRepository<Author, Long> {
 }
-/* TODO: 2019-06-17
-
-(nameOfClass)Service,
-(nameOfClass)ServiceImpl,
-
-
- */

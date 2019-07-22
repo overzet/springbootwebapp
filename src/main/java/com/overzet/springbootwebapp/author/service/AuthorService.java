@@ -1,4 +1,4 @@
 package com.overzet.springbootwebapp.author.service;
 
-public interface Service {
+public interface AuthorService {
 }

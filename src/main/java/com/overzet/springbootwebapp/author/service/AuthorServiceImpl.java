@@ -1,26 +1,23 @@
 package com.overzet.springbootwebapp.author.service;
 
 import com.overzet.springbootwebapp.author.entity.Entity;
-import com.overzet.springbootwebapp.author.repository.Repository;
+import com.overzet.springbootwebapp.author.model.Author;
+import com.overzet.springbootwebapp.author.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-
-@org.springframework.stereotype.Service
-public class ServiceImpl implements Service {
-
-    private Repository repository;
+@Service
+public class AuthorServiceImpl implements AuthorService {
 
     @Autowired
-    public ServiceImpl(Repository repository) {
-        this.repository = repository;
+    private AuthorRepository authorRepository;
 
-    }
 
-    public List<Entity> authorList() {
-        return repository.findAll();
+    public List<Author> findAll() {
+        return authorRepository.findAll();
     }
 
     public void addAuthor(Entity entity) {

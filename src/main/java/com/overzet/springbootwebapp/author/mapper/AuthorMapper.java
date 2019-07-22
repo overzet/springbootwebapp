@@ -1,11 +1,13 @@
 package com.overzet.springbootwebapp.author.mapper;
 
-import com.overzet.springbootwebapp.author.entity.Entity;
+import com.overzet.springbootwebapp.author.entity.AuthorEntity;
 import org.mapstruct.Mapping;
+import org.mapstruct.Mapper;
 
-@org.mapstruct.Mapper
+
+@Mapper(componentModel = "spring")
 public interface Mapper {
     @Mapping(target = "id", source = "id")
-    Entity authorToMap(Entity entity);
+    AuthorEntity authorToMap(AuthorEntity authorEntity);
 
 }
